@@ -21,7 +21,7 @@ allprojects {
 **Step 2**. Add the dependency
 ```gradle
 dependencies {
-    implementation 'com.github.Yedongsheng:MultiImageView:v1.0.0'
+    implementation 'com.github.ydslib:MultiImageView:v1.0.0'
 }
 ```
 

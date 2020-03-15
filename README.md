@@ -35,4 +35,36 @@ That's it! The first time you request a project JitPack checks out the code, bui
 If the project doesn't have any GitHub Releases you can use the short commit hash or 'master-SNAPSHOT' as the version.
 
 # Use
-
+ use in xml file
+```xml
+    <com.yds.library.MultiImageView
+        android:id="@+id/image_multi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:imgGap="3dp"
+        app:maxSize="9"
+        app:layout_constraintTop_toTopOf="parent"/>
+```
+ use in java file
+ ```java
+     private int[] src = new int[]{
+            R.drawable.test01,R.drawable.test02,R.drawable.test03,
+            R.drawable.test04,R.drawable.test05,R.drawable.test06,
+            R.drawable.test07,R.drawable.test08,R.drawable.test09,R.drawable.test10
+    };
+    ...
+    mMultiImageView.setImagesData(mList);
+ ```
+ test
+ 
+ <p>
+  <h3>app:maxSize="2"</h3>
+  <img src="https://github.com/ydslib/Picture/blob/master/MultiImageView/maxSize2.jpg" width="300" height="600"/>
+  
+  <h3>app:maxSize="5"</h3>
+  <img src="https://github.com/ydslib/Picture/blob/master/MultiImageView/maxSize5.jpg" width="300" height="600"/>
+  
+  <h3>app:maxSize="9"</h3>
+  <img src="https://github.com/ydslib/Picture/blob/master/MultiImageView/maxSize9.jpg" width="300" height="600"/>
+</p>
+ 

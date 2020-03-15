@@ -21,7 +21,7 @@ allprojects {
 **Step 2**. Add the dependency
 ```gradle
 dependencies {
-    implementation 'com.github.Yedongsheng:MultiImageView:Tag'
+    implementation 'com.github.Yedongsheng:MultiImageView:v1.0.0'
 }
 ```
 
@@ -33,3 +33,6 @@ Link
 That's it! The first time you request a project JitPack checks out the code, builds it and serves the build artifacts (jar, aar).
 
 If the project doesn't have any GitHub Releases you can use the short commit hash or 'master-SNAPSHOT' as the version.
+
+# Use
+

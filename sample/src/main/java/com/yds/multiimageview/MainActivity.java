@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -34,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         mMultiImageView = findViewById(R.id.image_multi);
         mMultiImageView.setImagesData(mList);
 
-        mMultiImageView.setItemImageClickListener(new MultiImageView.OnItemImageClickListener() {
+        mMultiImageView.setOnItemImageClickListener(new MultiImageView.OnItemImageClickListener() {
             @Override
             public void onItemImageClick(Context context, ImageView imageView, int index, List list) {
                 Toast.makeText(context,"测试",Toast.LENGTH_SHORT).show();

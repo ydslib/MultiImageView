@@ -20,7 +20,7 @@ import java.util.List;
  * Created by yds
  * on 2020/3/15.
  */
-public class MultiImageView <T> extends ViewGroup {
+public class MultiImageView<T> extends ViewGroup {
     private Context mContext;
     private int mGap;//图片间距
     private int mSingleImgSize;//单张图片尺寸
@@ -95,21 +95,21 @@ public class MultiImageView <T> extends ViewGroup {
 
 
     private void layoutMaxCountChildrenView(int childrenCount) {
-        int left = 0, top = 0, right=0, bottom=0;
+        int left = 0, top = 0, right = 0, bottom = 0;
         for (int i = 0; i < childrenCount; i++) {
             ImageView childrenView = (ImageView) getChildAt(i);
             childrenView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            left = getPaddingLeft()+i%3*mImageSize+i%3*mGap;
-            top = getPaddingTop()+i/3*mImageSize+i/3*mGap;
-            right = left+mImageSize;
+            left = getPaddingLeft() + i % 3 * mImageSize + i % 3 * mGap;
+            top = getPaddingTop() + i / 3 * mImageSize + i / 3 * mGap;
+            right = left + mImageSize;
             bottom = top + mImageSize;
-            childrenView.layout(left,top,right,bottom);
+            childrenView.layout(left, top, right, bottom);
             Glide.with(mContext).load(mImgDataList.get(i)).into(childrenView);
         }
-        showImageAndText(left,top,right,bottom);
+        showImageAndText(left, top, right, bottom);
     }
 
-    private void showImageAndText(int left,int top,int right,int bottom){
+    private void showImageAndText(int left, int top, int right, int bottom) {
 
         if (mImgDataList.size() > mMaxSize) {
             if (textView != null) {
@@ -214,7 +214,9 @@ public class MultiImageView <T> extends ViewGroup {
             imageView.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mOnItemImageClickListener.onItemImageClick(mContext,imageView,position,mImgDataList);
+                    if (mOnItemImageClickListener != null) {
+                        mOnItemImageClickListener.onItemImageClick(mContext, imageView, position, mImgDataList);
+                    }
                 }
             });
             return imageView;
@@ -247,7 +249,7 @@ public class MultiImageView <T> extends ViewGroup {
         mMaxSize = maxSize;
     }
 
-    public void setItemImageClickListener(OnItemImageClickListener<T> onItemImageClickListener){
+    public void setOnItemImageClickListener(OnItemImageClickListener<T> onItemImageClickListener) {
         mOnItemImageClickListener = onItemImageClickListener;
     }
 

@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.Gravity;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -30,6 +31,8 @@ public class MultiImageView <T> extends ViewGroup {
     private int mRowCount;//行数，用于后续扩展
     private int mColumnCount;//列数
     private TextView textView;
+
+    private OnItemImageClickListener<T> mOnItemImageClickListener;
 
     public MultiImageView(Context context) {
         this(context, null);
@@ -206,8 +209,14 @@ public class MultiImageView <T> extends ViewGroup {
         if (position < mImageViewList.size()) {
             return mImageViewList.get(position);
         } else {
-            ImageView imageView = new ImageView(mContext);
+            final ImageView imageView = new ImageView(mContext);
             mImageViewList.add(imageView);
+            imageView.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mOnItemImageClickListener.onItemImageClick(mContext,imageView,position,mImgDataList);
+                }
+            });
             return imageView;
         }
     }
@@ -238,8 +247,16 @@ public class MultiImageView <T> extends ViewGroup {
         mMaxSize = maxSize;
     }
 
+    public void setItemImageClickListener(OnItemImageClickListener<T> onItemImageClickListener){
+        mOnItemImageClickListener = onItemImageClickListener;
+    }
+
     private int px2sp(Context context, float pxValue) {
         final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
         return (int) (pxValue / fontScale + 0.5f);
+    }
+
+    public interface OnItemImageClickListener<T> {
+        void onItemImageClick(Context context, ImageView imageView, int index, List<T> list);
     }
 }

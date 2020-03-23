@@ -43,7 +43,7 @@ If the project doesn't have any GitHub Releases you can use the short commit has
         android:layout_height="wrap_content"
         app:imgGap="3dp"
         app:maxSize="9"
-        app:layout_constraintTop_toTopOf="parent"/>
+        />
 ```
  use in java file
  ```java
@@ -52,6 +52,9 @@ If the project doesn't have any GitHub Releases you can use the short commit has
             R.drawable.test04,R.drawable.test05,R.drawable.test06,
             R.drawable.test07,R.drawable.test08,R.drawable.test09,R.drawable.test10
     };
+    for(int i=0;i<src.length;i++){
+        mList.add(src[i]);
+    }
     ...
     mMultiImageView.setImagesData(mList);
  ```

@@ -96,8 +96,9 @@ public class MultiImageView<T> extends ViewGroup {
 
     private void layoutMaxCountChildrenView(int childrenCount) {
         int left = 0, top = 0, right = 0, bottom = 0;
+        ImageView childrenView = null;
         for (int i = 0; i < childrenCount; i++) {
-            ImageView childrenView = (ImageView) getChildAt(i);
+            childrenView = (ImageView) getChildAt(i);
             childrenView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             left = getPaddingLeft() + i % 3 * mImageSize + i % 3 * mGap;
             top = getPaddingTop() + i / 3 * mImageSize + i / 3 * mGap;
@@ -132,13 +133,6 @@ public class MultiImageView<T> extends ViewGroup {
                 //方法一：设置居中,setGravity(Gravity.CENTER)只显示为水平居中，所以需要设置padding
                 textView.setPadding(0, paddingTop, 0, paddingTop);
                 textView.setGravity(Gravity.CENTER);
-
-                //方法二:设置居中
-//                    Rect bounds = new Rect();
-//                    textView.getPaint().getTextBounds(text, 0, text.length(), bounds);
-//                    int textWidth = bounds.right - bounds.left;
-//                    int paddingLeft = (mImageSize - textWidth) / 2;
-//                    textView.setPadding(paddingLeft, paddingTop, 0, 0);
 
                 textView.layout(left, top, right, bottom);
                 //这里设置只会显示水平居中，所以需要上面的padding
@@ -184,8 +178,9 @@ public class MultiImageView<T> extends ViewGroup {
         int[] params = calculateParam(showCount);
         mRowCount = params[0];//行数
         mColumnCount = params[1];//列数
+        ImageView iv = null;
         for (int i = 0; i < showCount; i++) {
-            ImageView iv = getImageView(i);
+            iv = getImageView(i);
             if (iv == null) {
                 return;
             }

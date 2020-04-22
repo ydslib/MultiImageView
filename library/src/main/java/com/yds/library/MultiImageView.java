@@ -30,8 +30,19 @@ public class MultiImageView<T> extends ViewGroup {
     private int mImageSize;//图片大小
     private int mRowCount;//行数，用于后续扩展
     private int mColumnCount;//列数
+    private boolean isShowText;//是否显示文字
+    private ImageView.ScaleType mScaleType;
     private TextView textView;
-
+    private static final ImageView.ScaleType[] sScaleTypeArray = {
+            ImageView.ScaleType.MATRIX,
+            ImageView.ScaleType.FIT_XY,
+            ImageView.ScaleType.FIT_START,
+            ImageView.ScaleType.FIT_CENTER,
+            ImageView.ScaleType.FIT_END,
+            ImageView.ScaleType.CENTER,
+            ImageView.ScaleType.CENTER_CROP,
+            ImageView.ScaleType.CENTER_INSIDE
+    };
     private OnItemImageClickListener<T> mOnItemImageClickListener;
 
     public MultiImageView(Context context) {
@@ -48,12 +59,18 @@ public class MultiImageView<T> extends ViewGroup {
     }
 
     private void init(Context context, AttributeSet attrs) {
+        mScaleType = ImageView.ScaleType.CENTER_CROP;
         this.mContext = context;
         //自定义xml属性
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.MultiImageView);
         this.mGap = (int) typedArray.getDimension(R.styleable.MultiImageView_imgGap, 0);
         this.mSingleImgSize = typedArray.getDimensionPixelSize(R.styleable.MultiImageView_singleImgSize, -1);
         this.mMaxSize = typedArray.getInteger(R.styleable.MultiImageView_maxSize, 3);
+        this.isShowText = typedArray.getBoolean(R.styleable.MultiImageView_isShowText, true);
+        final int index = typedArray.getInt(R.styleable.MultiImageView_scaleType, -1);
+        if (index >= 0) {
+            mScaleType = sScaleTypeArray[index];
+        }
         typedArray.recycle();
     }
 
@@ -99,7 +116,7 @@ public class MultiImageView<T> extends ViewGroup {
         ImageView childrenView = null;
         for (int i = 0; i < childrenCount; i++) {
             childrenView = (ImageView) getChildAt(i);
-            childrenView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            childrenView.setScaleType(mScaleType);
             left = getPaddingLeft() + i % 3 * mImageSize + i % 3 * mGap;
             top = getPaddingTop() + i / 3 * mImageSize + i / 3 * mGap;
             right = left + mImageSize;
@@ -107,7 +124,9 @@ public class MultiImageView<T> extends ViewGroup {
             childrenView.layout(left, top, right, bottom);
             Glide.with(mContext).load(mImgDataList.get(i)).into(childrenView);
         }
-        showImageAndText(left, top, right, bottom);
+        if (isShowText) {
+            showImageAndText(left, top, right, bottom);
+        }
     }
 
     private void showImageAndText(int left, int top, int right, int bottom) {
@@ -117,7 +136,7 @@ public class MultiImageView<T> extends ViewGroup {
                 textView.bringToFront();
                 //设置字体大小
                 String text = "共" + mImgDataList.size() + "张图";
-                int textSize = px2sp(mContext, mImageSize / 6);
+                int textSize = px2sp(mContext, mImageSize / 6.0f);
                 textView.setTextSize(textSize);
                 textView.setText(text);
 
@@ -144,8 +163,8 @@ public class MultiImageView<T> extends ViewGroup {
     /**
      * 获取需要显示的数量
      *
-     * @param size
-     * @return
+     * @param size 尺寸
+     * @return 返回需要显示的数量
      */
     private int getNeedShowCount(int size) {
         //如果size大于最大显示数量，则用最大显示数量
@@ -160,7 +179,7 @@ public class MultiImageView<T> extends ViewGroup {
     /**
      * 设置图片数据
      *
-     * @param list
+     * @param list 图片数据
      */
     public void setImagesData(List<T> list) {
         mImgDataList = list;
@@ -242,6 +261,14 @@ public class MultiImageView<T> extends ViewGroup {
      */
     public void setMaxSize(int maxSize) {
         mMaxSize = maxSize;
+    }
+
+    public boolean isShowText() {
+        return isShowText;
+    }
+
+    public void setShowText(boolean showText) {
+        isShowText = showText;
     }
 
     public void setOnItemImageClickListener(OnItemImageClickListener<T> onItemImageClickListener) {

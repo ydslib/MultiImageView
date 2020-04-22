@@ -7,17 +7,17 @@
     tools:context=".MainActivity">
 
     <com.yds.library.MultiImageView
-        android:layout_marginTop="10dp"
         android:id="@+id/image_multi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:imgGap="3dp"
-        app:maxSize="9"
+        android:layout_marginTop="10dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        app:singleImgSize="50dp"
         android:paddingBottom="10dp"
+        app:imgGap="3dp"
+        app:isShowText="false"
         app:layout_constraintTop_toTopOf="parent"
-        />
+        app:maxSize="9"
+        app:singleImgSize="50dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

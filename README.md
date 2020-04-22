@@ -73,16 +73,16 @@ If the project doesn't have any GitHub Releases you can use the short commit has
  - app:imgGap="3dp"
  The image gap
  
- - app:isShowText="false"
+ - app:isShowText="false"</br>
  This attribute is used to control whether the prompt text is displayed
  
- - app:scaleType="center"
+ - app:scaleType="center"</br>
  This attribute is used to control how the picture is displayed
  
- - app:maxSize="2"
+ - app:maxSize="2"</br>
  The max number of image should be show
  
- - app:singleImgSize="50dp"
+ - app:singleImgSize="50dp"</br>
  The single Image size
  
  

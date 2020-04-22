@@ -271,6 +271,14 @@ public class MultiImageView<T> extends ViewGroup {
         isShowText = showText;
     }
 
+    public ImageView.ScaleType getScaleType() {
+        return mScaleType;
+    }
+
+    public void setScaleType(ImageView.ScaleType scaleType) {
+        this.mScaleType = scaleType;
+    }
+
     public void setOnItemImageClickListener(OnItemImageClickListener<T> onItemImageClickListener) {
         mOnItemImageClickListener = onItemImageClickListener;
     }

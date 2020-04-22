@@ -21,7 +21,7 @@ allprojects {
 **Step 2**. Add the dependency
 ```gradle
 dependencies {
-    implementation 'com.github.ydslib:MultiImageView:1.0.1'
+    implementation 'com.github.ydslib:MultiImageView:1.0.2'
 }
 ```
 
@@ -47,6 +47,7 @@ If the project doesn't have any GitHub Releases you can use the short commit has
 ```
  use in java file
  ```java
+ // local image
      private int[] src = new int[]{
             R.drawable.test01,R.drawable.test02,R.drawable.test03,
             R.drawable.test04,R.drawable.test05,R.drawable.test06,
@@ -57,7 +58,34 @@ If the project doesn't have any GitHub Releases you can use the short commit has
     }
     ...
     mMultiImageView.setImagesData(mList);
+    
+ // internet image
+ List<String> mList = new ArrayList<>();
+ mList.add("https://flmfxz.com/2020/04/MFStar范模学院Vol275糯美子Mini-9.jpg")
+ ...
+ 
+ mMultiImageView.setImagesData(mList);
+ 
+ 
  ```
+ # Attribute
+ 
+ - app:imgGap="3dp"
+ The image gap
+ 
+ - app:isShowText="false"
+ This attribute is used to control whether the prompt text is displayed
+ 
+ - app:scaleType="center"
+ This attribute is used to control how the picture is displayed
+ 
+ - app:maxSize="2"
+ The max number of image should be show
+ 
+ - app:singleImgSize="50dp"
+ The single Image size
+ 
+ 
  test
  
  <p>

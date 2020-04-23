@@ -70,7 +70,7 @@ If the project doesn't have any GitHub Releases you can use the short commit has
  ```
  # Attribute
  
- - app:imgGap="3dp"
+ - app:imgGap="3dp"</br>
  The image gap
  
  - app:isShowText="false"</br>

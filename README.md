@@ -57,7 +57,8 @@ If the project doesn't have any GitHub Releases you can use the short commit has
         mList.add(src[i]);
     }
     ...
-    mMultiImageView.setImagesData(mList);
+    mMultiImageView.setImagesData(mList);//设置数据
+    
     
  // internet image
  List<String> mList = new ArrayList<>();
@@ -66,6 +67,10 @@ If the project doesn't have any GitHub Releases you can use the short commit has
  
  mMultiImageView.setImagesData(mList);
  
+//加载图片与MultiImageView控件分离，这样如果想用Glide加载，
+    //则继承MultiImageDelegate实现into方法就行了，具体实例可见simple
+ mMultiImageView.setMultiImageDelegate(new GlideLoadImageDelegate());
+
  
  ```
  # Attribute
@@ -98,4 +103,3 @@ If the project doesn't have any GitHub Releases you can use the short commit has
   <h3>app:maxSize="9"</h3>
   <img src="https://github.com/ydslib/Picture/blob/master/MultiImageView/maxSize9.jpg" width="300" height="600"/>
 </p>
- 

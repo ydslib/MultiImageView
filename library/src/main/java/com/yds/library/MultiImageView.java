@@ -11,8 +11,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +19,7 @@ import java.util.List;
  * on 2020/3/15.
  */
 public class MultiImageView<T> extends ViewGroup {
+    private MultiImageDelegate mDelegate;
     private Context mContext;
     private int mGap;//图片间距
     private int mSingleImgSize;//单张图片尺寸
@@ -122,7 +121,11 @@ public class MultiImageView<T> extends ViewGroup {
             right = left + mImageSize;
             bottom = top + mImageSize;
             childrenView.layout(left, top, right, bottom);
-            Glide.with(mContext).load(mImgDataList.get(i)).into(childrenView);
+            System.out.println("mDelegate:" + mDelegate);
+            if (mDelegate != null) {
+                mDelegate.with(mContext).load(mImgDataList.get(i)).into(childrenView);
+            }
+//            Glide.with(mContext).load(mImgDataList.get(i)).into(childrenView);
         }
         if (isShowText) {
             showImageAndText(left, top, right, bottom);
@@ -290,5 +293,9 @@ public class MultiImageView<T> extends ViewGroup {
 
     public interface OnItemImageClickListener<T> {
         void onItemImageClick(Context context, ImageView imageView, int index, List<T> list);
+    }
+
+    public void setMultiImageDelegate(MultiImageDelegate delegate) {
+        this.mDelegate = delegate;
     }
 }

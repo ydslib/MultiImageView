@@ -16,9 +16,9 @@ public class MainActivity extends AppCompatActivity {
     private MultiImageView mMultiImageView;
     private List<Integer> mList = new ArrayList<>();
     private int[] src = new int[]{
-            R.drawable.test01,R.drawable.test02,R.drawable.test03,
-            R.drawable.test04,R.drawable.test05,R.drawable.test06,
-            R.drawable.test07,R.drawable.test08,R.drawable.test09,R.drawable.test10
+            R.drawable.test01, R.drawable.test02, R.drawable.test03,
+            R.drawable.test04, R.drawable.test05, R.drawable.test06,
+            R.drawable.test07, R.drawable.test08, R.drawable.test09, R.drawable.test10
     };
 
     @Override
@@ -26,17 +26,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        for (int i=0;i<src.length;i++){
+        for (int i = 0; i < src.length; i++) {
             mList.add(src[i]);
         }
 
         mMultiImageView = findViewById(R.id.image_multi);
         mMultiImageView.setImagesData(mList);
+        mMultiImageView.setMultiImageDelegate(new GlideLoadImageDelegate());
 
         mMultiImageView.setOnItemImageClickListener(new MultiImageView.OnItemImageClickListener() {
             @Override
             public void onItemImageClick(Context context, ImageView imageView, int index, List list) {
-                Toast.makeText(context,"测试",Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "测试", Toast.LENGTH_SHORT).show();
             }
         });
     }

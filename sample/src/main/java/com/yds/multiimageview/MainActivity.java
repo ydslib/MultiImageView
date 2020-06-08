@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
         mMultiImageView = findViewById(R.id.image_multi);
         mMultiImageView.setImagesData(mList);
-        mMultiImageView.setMultiImageDelegate(new GlideLoadImageDelegate());
+        mMultiImageView.setMultiImageLoader(new GlideLoadImage());
 
         mMultiImageView.setOnItemImageClickListener(new MultiImageView.OnItemImageClickListener() {
             @Override

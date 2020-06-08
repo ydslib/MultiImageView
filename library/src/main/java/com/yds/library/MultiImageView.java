@@ -19,7 +19,7 @@ import java.util.List;
  * on 2020/3/15.
  */
 public class MultiImageView<T> extends ViewGroup {
-    private MultiImageDelegate mDelegate;
+    private IMultiImageLoader imageLoader;
     private Context mContext;
     private int mGap;//图片间距
     private int mSingleImgSize;//单张图片尺寸
@@ -112,7 +112,7 @@ public class MultiImageView<T> extends ViewGroup {
 
     private void layoutMaxCountChildrenView(int childrenCount) {
         int left = 0, top = 0, right = 0, bottom = 0;
-        ImageView childrenView = null;
+        ImageView childrenView;
         for (int i = 0; i < childrenCount; i++) {
             childrenView = (ImageView) getChildAt(i);
             childrenView.setScaleType(mScaleType);
@@ -121,11 +121,11 @@ public class MultiImageView<T> extends ViewGroup {
             right = left + mImageSize;
             bottom = top + mImageSize;
             childrenView.layout(left, top, right, bottom);
-            System.out.println("mDelegate:" + mDelegate);
-            if (mDelegate != null) {
-                mDelegate.with(mContext).load(mImgDataList.get(i)).into(childrenView);
+            if (imageLoader != null) {
+                imageLoader.load(mContext, mImgDataList.get(i), childrenView);
+            }else{
+                throw new NotSetImageLoaderException("you should call the MultiImageView#setMultiImageLoader method");
             }
-//            Glide.with(mContext).load(mImgDataList.get(i)).into(childrenView);
         }
         if (isShowText) {
             showImageAndText(left, top, right, bottom);
@@ -139,7 +139,7 @@ public class MultiImageView<T> extends ViewGroup {
                 textView.bringToFront();
                 //设置字体大小
                 String text = "共" + mImgDataList.size() + "张图";
-                int textSize = px2sp(mContext, mImageSize / 6.0f);
+                int textSize = DensityUtil.px2sp(mContext, mImageSize / 6.0f);
                 textView.setTextSize(textSize);
                 textView.setText(text);
 
@@ -200,7 +200,7 @@ public class MultiImageView<T> extends ViewGroup {
         int[] params = calculateParam(showCount);
         mRowCount = params[0];//行数
         mColumnCount = params[1];//列数
-        ImageView iv = null;
+        ImageView iv;
         for (int i = 0; i < showCount; i++) {
             iv = getImageView(i);
             if (iv == null) {
@@ -286,16 +286,12 @@ public class MultiImageView<T> extends ViewGroup {
         mOnItemImageClickListener = onItemImageClickListener;
     }
 
-    private int px2sp(Context context, float pxValue) {
-        final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
-        return (int) (pxValue / fontScale + 0.5f);
-    }
 
     public interface OnItemImageClickListener<T> {
         void onItemImageClick(Context context, ImageView imageView, int index, List<T> list);
     }
 
-    public void setMultiImageDelegate(MultiImageDelegate delegate) {
-        this.mDelegate = delegate;
+    public void setMultiImageLoader(IMultiImageLoader imageLoader) {
+        this.imageLoader = imageLoader;
     }
 }

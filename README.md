@@ -21,7 +21,7 @@ allprojects {
 **Step 2**. Add the dependency
 ```gradle
 dependencies {
-    implementation 'com.github.ydslib:MultiImageView:1.0.2'
+    implementation 'com.github.ydslib:MultiImageView:1.0.4'
 }
 ```
 
@@ -68,8 +68,8 @@ If the project doesn't have any GitHub Releases you can use the short commit has
  mMultiImageView.setImagesData(mList);
  
 //加载图片与MultiImageView控件分离，这样如果想用Glide加载，
-    //则继承MultiImageDelegate实现into方法就行了，具体实例可见simple
- mMultiImageView.setMultiImageDelegate(new GlideLoadImageDelegate());
+    //则实现IMultiImageLoader接口就行了，具体实例可见simple
+ mMultiImageView.setMultiImageLoader(new GlideLoadImage());
 
  
  ```

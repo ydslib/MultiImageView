@@ -62,11 +62,11 @@ public class MultiImageView<T> extends ViewGroup {
         this.mContext = context;
         //自定义xml属性
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.MultiImageView);
-        this.mGap = (int) typedArray.getDimension(R.styleable.MultiImageView_imgGap, 0);
-        this.mSingleImgSize = typedArray.getDimensionPixelSize(R.styleable.MultiImageView_singleImgSize, -1);
-        this.mMaxSize = typedArray.getInteger(R.styleable.MultiImageView_maxSize, 3);
-        this.isShowText = typedArray.getBoolean(R.styleable.MultiImageView_isShowText, true);
-        final int index = typedArray.getInt(R.styleable.MultiImageView_scaleType, -1);
+        this.mGap = (int) typedArray.getDimension(R.styleable.MultiImageView_miv_imgGap, 0);
+        this.mSingleImgSize = typedArray.getDimensionPixelSize(R.styleable.MultiImageView_miv_singleImgSize, -1);
+        this.mMaxSize = typedArray.getInteger(R.styleable.MultiImageView_miv_maxSize, 3);
+        this.isShowText = typedArray.getBoolean(R.styleable.MultiImageView_miv_isShowText, true);
+        final int index = typedArray.getInt(R.styleable.MultiImageView_miv_scaleType, -1);
         if (index >= 0) {
             mScaleType = sScaleTypeArray[index];
         }

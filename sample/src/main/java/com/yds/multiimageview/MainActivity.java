@@ -40,5 +40,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(context, "测试", Toast.LENGTH_SHORT).show();
             }
         });
+
+        System.out.println("value:" + ImageView.ScaleType.CENTER);
     }
 }

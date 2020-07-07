@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="MultiImageView">
-        <attr name="singleImgSize" format="dimension"/>
-        <attr name="imgGap" format="dimension"/>
-        <attr name="maxSize" format="integer"/>
-        <attr name="isShowText" format="boolean"/>
-        <attr name="scaleType" format="enum">
+        <attr name="miv_singleImgSize" format="dimension"/>
+        <attr name="miv_imgGap" format="dimension"/>
+        <attr name="miv_maxSize" format="integer"/>
+        <attr name="miv_isShowText" format="boolean"/>
+        <attr name="miv_scaleType" format="enum">
             <enum name="matrix" value="0"/>
             <enum name="fitXY" value="1"/>
             <enum name="fitStart" value="2"/>

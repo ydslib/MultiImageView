@@ -14,11 +14,11 @@
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:paddingBottom="10dp"
-        app:imgGap="3dp"
-        app:isShowText="false"
-        app:scaleType="center"
+        app:miv_imgGap="3dp"
+        app:miv_isShowText="false"
         app:layout_constraintTop_toTopOf="parent"
-        app:maxSize="9"
-        app:singleImgSize="50dp" />
+        app:miv_maxSize="9"
+        app:miv_scaleType="center"
+        app:miv_singleImgSize="50dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
